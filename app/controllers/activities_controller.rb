@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, except: [:index]
 
   # GET /activities
   # GET /activities.json
@@ -14,17 +15,18 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/new
   def new
-    @activity = Activity.new
+    @activity = current_user.activities.new
   end
 
   # GET /activities/1/edit
   def edit
+    @activity = current_user.activities.find(params[:id])
   end
 
   # POST /activities
   # POST /activities.json
   def create
-    @activity = Activity.new(activity_params)
+    @activity = current_user.activities.new(activity_params)
 
     respond_to do |format|
       if @activity.save
@@ -54,6 +56,7 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1
   # DELETE /activities/1.json
   def destroy
+    @activity = current_user.activities.find(params[:id])
     @activity.destroy
     respond_to do |format|
       format.html { redirect_to activities_url }
