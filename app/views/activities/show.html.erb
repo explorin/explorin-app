@@ -1,5 +1,6 @@
 
 <p>
+  <%= image_tag @activity.activity_image(:large) %>
   <strong>Title:</strong>
   <%= @activity.title %>
 </p>
@@ -13,7 +14,7 @@
 	Created by: <%= @activity.user.id %>
 	Created by: <%= @activity.id %>
 </p>
-        <% if current_user == activity.user %>
+        <% if current_user == @activity.user %>
 			<%= link_to 'Edit', edit_activity_path(@activity) %> |
 		<% end %>
 <%= link_to 'Back', activities_path %>

@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'devise'
 gem 'simple_form'
+gem "paperclip", "~> 4.1"
 
 # Use sqlite3 as the database for Active Record
 

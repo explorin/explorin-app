@@ -16,6 +16,12 @@ class Activity < ActiveRecord::Base
 }
 
     belongs_to :user
+    has_attached_file :activity_image, :styles => { :small => "75x75#", :medium => "325x325#", :large => "1000x1000>" }
+
     validates :user_id, presence: true
+    validates_attachment :activity_image, presence: true,
+                        content_type: {content_type: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']},
+                        size: {less_than: 5.megabytes}
+
 
 end
